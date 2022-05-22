@@ -7,10 +7,13 @@ plugins {
 import github.leavesc.asm.plugins.double_click.DoubleClickPlugin
 import github.leavesc.asm.plugins.optimized_thread.OptimizedThreadPlugin
 import github.leavesc.asm.plugins.privacy_sentry.PrivacySentryPlugin
+import github.leavesc.asm.plugins.lifecycle.LifeCyclePlugin
 
 apply plugin: DoubleClickPlugin
 apply plugin: OptimizedThreadPlugin
 apply plugin: PrivacySentryPlugin
+apply plugin: LifeCyclePlugin
+apply plugin: TestPlugin
 
 def keyAliasExt = "leavesc"
 def keyPasswordExt = "123456"
@@ -81,4 +84,12 @@ dependencies {
     kapt "com.jakewharton:butterknife-compiler:$butter_knife_version"
     implementation 'commons-io:commons-io:2.6'
     implementation project(path: ':double_click')
+}
+
+class TestPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project target) {
+        println("testPlugin excute success")
+    }
 }
